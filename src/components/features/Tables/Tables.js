@@ -4,7 +4,7 @@ import { Button, ListGroup, Col, Row } from 'react-bootstrap';
 const Tables = ({ tables, ...props }) => {
   if (tables.length === 0) return <Col className='text-center'>No tables to show...</Col>;
   return (
-    <ListGroup variant='flush' className='p-2'>
+    <ListGroup variant='flush' className='p-1'>
       {tables.map((table) => (
         <ListGroup.Item key={table.id}>
           <Row className='py-2'>
