@@ -1,13 +1,6 @@
 {
   "tables": [
     {
-      "id": "1",
-      "status": "Free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "3",
-      "bill": "0"
-    },
-    {
       "id": "2",
       "status": "Free",
       "peopleAmount": "0",
@@ -15,18 +8,18 @@
       "bill": "0"
     },
     {
-      "id": "3",
-      "status": "Free",
-      "peopleAmount": "0",
+      "status": "Cleaning",
+      "peopleAmount": "5",
       "maxPeopleAmount": "5",
-      "bill": "0"
+      "bill": "0",
+      "id": "3"
     },
     {
-      "id": "4",
-      "status": "Free",
+      "status": "Cleaning",
       "peopleAmount": "0",
       "maxPeopleAmount": "6",
-      "bill": "0"
+      "bill": "0",
+      "id": "4"
     },
     {
       "id": "5",
@@ -34,6 +27,41 @@
       "peopleAmount": "0",
       "maxPeopleAmount": "8",
       "bill": "0"
+    },
+    {
+      "status": "Free",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "0",
+      "bill": "0",
+      "id": "1"
+    },
+    {
+      "status": "Free",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "0",
+      "bill": "0",
+      "id": "6"
+    },
+    {
+      "status": "Busy",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "0",
+      "bill": "0",
+      "id": "7"
+    },
+    {
+      "status": "Cleaning",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "0",
+      "bill": "0",
+      "id": "8"
+    },
+    {
+      "status": "Busy",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "0",
+      "bill": "0",
+      "id": "9"
     }
   ]
 }

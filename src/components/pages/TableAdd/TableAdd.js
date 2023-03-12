@@ -1,14 +1,19 @@
 import TableForm from '../../features/TableForm/TableForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addTable } from '../../../redux/tablesReducer';
+import { addTableRequest, getNewId } from '../../../redux/tablesReducer';
+import { useCallback } from 'react';
 const TableAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleSubmit = (table) => {
-    dispatch(addTable(table));
-    navigate('/');
-  };
+  const newTableId = useSelector((state) => getNewId(state));
+  const handleSubmit = useCallback(
+    (table) => {
+      dispatch(addTableRequest({ ...table, id: newTableId }));
+      navigate('/');
+    },
+    [dispatch, navigate, newTableId]
+  );
 
   return <TableForm action={handleSubmit} actionText='Add table' />;
 };

@@ -5,13 +5,13 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const TableForm = ({ action, actionText, ...props }) => {
-  const statuses = ['Busy', 'Cleaning', 'Free', 'Reserved'];
-  const [status, setStatus] = useState(props.status || '');
+  const [statuses] = useState(['Busy', 'Cleaning', 'Free', 'Reserved']);
+  const [status, setStatus] = useState(props.status || 'Free');
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || '0');
   const [bill, setBill] = useState(props.bill || '0');
   const handleSubmit = () => {
-    console.log('submit');
+    action({ status, peopleAmount, maxPeopleAmount, bill });
   };
 
   const {
