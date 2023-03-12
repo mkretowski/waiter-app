@@ -43,6 +43,24 @@ export const addTableRequest = (newTable) => {
   };
 };
 
+export const removeTableRequest = (table) => {
+  console.log(table);
+  return (dispatch) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const url = 'http://localhost:3131/api/tables/' + table;
+    fetch(url, options)
+      .then(() => dispatch(removeTable(table)))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
 export const updateTableRequest = (newProperties) => {
   return (dispatch) => {
     const options = {

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Button, ListGroup, Col, Row } from 'react-bootstrap';
-
-const Tables = ({ tables, ...props }) => {
+const Tables = ({ tables, action, ...props }) => {
+  const handleDelete = (tableId) => {
+    action(tableId);
+  };
   if (tables.length === 0) return <Col className='text-center'>No tables to show...</Col>;
   return (
     <ListGroup variant='flush' className='p-1'>
@@ -20,6 +22,14 @@ const Tables = ({ tables, ...props }) => {
             <Col className='text-sm-end text-center p-0'>
               <Button variant='primary' as={Link} to={'/table/update/' + table.id}>
                 Show more
+              </Button>{' '}
+              <Button
+                variant='primary'
+                onClick={() => {
+                  handleDelete(table.id);
+                }}
+              >
+                Delete table
               </Button>
             </Col>
           </Row>
