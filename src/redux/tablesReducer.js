@@ -1,4 +1,6 @@
 import shortid from 'shortid';
+
+export let pending = false;
 //selectors
 export const getAllTables = (state) => {
   return state.tables;
@@ -26,6 +28,7 @@ export const updateTables = (payload) => ({ type: UPDATE_TABLES, payload });
 export const removeTable = (payload) => ({ type: REMOVE_TABLE, payload });
 
 export const addTableRequest = (newTable) => {
+  pending = true;
   return (dispatch) => {
     const options = {
       method: 'POST',
@@ -44,7 +47,7 @@ export const addTableRequest = (newTable) => {
 };
 
 export const removeTableRequest = (table) => {
-  console.log(table);
+  pending = true;
   return (dispatch) => {
     const options = {
       method: 'DELETE',
@@ -62,6 +65,7 @@ export const removeTableRequest = (table) => {
 };
 
 export const updateTableRequest = (newProperties) => {
+  pending = true;
   return (dispatch) => {
     const options = {
       method: 'PUT',
@@ -80,10 +84,12 @@ export const updateTableRequest = (newProperties) => {
 };
 
 export const fetchTables = () => {
+  pending = true;
   return (dispatch) => {
     fetch('http://localhost:3131/api/tables')
       .then((res) => res.json())
       .then((tables) => dispatch(updateTables(tables)))
+      .then((pending = false))
       .catch((error) => {
         console.log(error);
       });

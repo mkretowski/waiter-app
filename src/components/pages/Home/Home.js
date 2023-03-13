@@ -1,11 +1,12 @@
 import Tables from '../../features/Tables/Tables';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Spinner } from 'react-bootstrap';
 import PageTitle from '../../views/PageTitle/PageTitle';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTables } from '../../../redux/tablesReducer';
 import { useCallback } from 'react';
 import { removeTableRequest } from '../../../redux/tablesReducer';
+import { pending } from '../../../redux/tablesReducer';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ const Home = () => {
           </Button>
         </Col>
       </Row>
-      <Tables tables={tables} action={handleDelete} />
+      {pending && <Spinner animation='border' variant='primary' />}
+      {!pending && <Tables tables={tables} action={handleDelete} />}
     </>
   );
 };
