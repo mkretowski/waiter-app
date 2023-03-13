@@ -1,5 +1,5 @@
 import shortid from 'shortid';
-
+import { API_URL } from '../config';
 export let pending = false;
 //selectors
 export const getAllTables = (state) => {
@@ -38,7 +38,7 @@ export const addTableRequest = (newTable) => {
       body: JSON.stringify(newTable),
     };
 
-    fetch('http://localhost:3131/api/tables', options)
+    fetch(API_URL + '/tables', options)
       .then(() => dispatch(addTable(newTable)))
       .catch((error) => {
         console.log(error);
@@ -55,7 +55,7 @@ export const removeTableRequest = (table) => {
         'Content-Type': 'application/json',
       },
     };
-    const url = 'http://localhost:3131/api/tables/' + table;
+    const url = API_URL + '/tables/' + table;
     fetch(url, options)
       .then(() => dispatch(removeTable(table)))
       .catch((error) => {
@@ -74,7 +74,7 @@ export const updateTableRequest = (newProperties) => {
       },
       body: JSON.stringify(newProperties),
     };
-    const url = 'http://localhost:3131/api/tables/' + newProperties.id;
+    const url = API_URL + '/tables/' + newProperties.id;
     fetch(url, options)
       .then(() => dispatch(updateTable(newProperties)))
       .catch((error) => {
@@ -86,7 +86,7 @@ export const updateTableRequest = (newProperties) => {
 export const fetchTables = () => {
   pending = true;
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tables')
+    fetch(API_URL + '/tables')
       .then((res) => res.json())
       .then((tables) => dispatch(updateTables(tables)))
       .then((pending = false))
