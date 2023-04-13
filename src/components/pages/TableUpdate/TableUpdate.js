@@ -5,6 +5,7 @@ import { getTableById } from '../../../redux/tablesReducer';
 import { updateTableRequest } from '../../../redux/tablesReducer';
 import { Navigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import { updateTable } from '../../../redux/tablesReducer';
 const TableUpdate = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const TableUpdate = () => {
     async (table) => {
       try {
         await dispatch(updateTableRequest({ ...table, id })).unwrap();
+        dispatch(updateTable({ ...table, id }));
         navigate('/');
       } catch (rejectedValueOrSerializedError) {
         console.log(rejectedValueOrSerializedError);
@@ -25,5 +27,4 @@ const TableUpdate = () => {
   if (!tableData) return <Navigate to='/' />;
   return <TableForm action={handleSubmit} actionText='Update table' {...tableData} />;
 };
-//propTypes = {};
 export default TableUpdate;

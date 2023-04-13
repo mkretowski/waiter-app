@@ -79,6 +79,12 @@ const tablesSlice = createSlice({
       const tableId = action.payload;
       state.data = state.data.filter((table) => table.id !== tableId);
     },
+    addTable(state, action) {
+      state.data = [...state.data, { ...action.payload }];
+    },
+    updateTable(state, action) {
+      state.data.map((table) => (table.id === action.payload.id ? { ...table, ...action.payload } : table));
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchTables.pending, (state) => {
@@ -92,5 +98,5 @@ const tablesSlice = createSlice({
     });
   },
 });
-export const { removeTable } = tablesSlice.actions;
+export const { removeTable, addTable, updateTable } = tablesSlice.actions;
 export default tablesSlice.reducer;

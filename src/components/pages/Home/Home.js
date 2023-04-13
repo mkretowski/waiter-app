@@ -8,7 +8,6 @@ import { getAllTables, getStatus } from '../../../redux/tablesReducer';
 const Home = () => {
   const tables = useSelector(getAllTables);
   const { status } = useSelector(getStatus);
-  console.log(status);
   return (
     <>
       <Row className='m-0 p-2'>

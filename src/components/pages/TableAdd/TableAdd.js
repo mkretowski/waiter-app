@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addTableRequest, getNewId } from '../../../redux/tablesReducer';
 import { useCallback } from 'react';
+import { addTable } from '../../../redux/tablesReducer';
 const TableAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const TableAdd = () => {
     async (table) => {
       try {
         await dispatch(addTableRequest({ ...table, id: newTableId })).unwrap();
+        dispatch(addTable({ ...table, id: newTableId }));
         navigate('/');
       } catch (rejectedValueOrSerializedError) {
         console.log(rejectedValueOrSerializedError);

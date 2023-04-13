@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, ListGroup, Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { removeTableRequest } from '../../../redux/tablesReducer';
+import { removeTable } from '../../../redux/tablesReducer';
 const Tables = ({ tables }) => {
   const dispatch = useDispatch();
 
@@ -27,9 +28,14 @@ const Tables = ({ tables }) => {
               </Button>{' '}
               <Button
                 variant='primary'
-                onClick={(e) => {
+                onClick={async (e) => {
                   e.preventDefault();
-                  dispatch(removeTableRequest(table.id));
+                  try {
+                    await dispatch(removeTableRequest(table.id)).unwrap();
+                    dispatch(removeTable(table.id));
+                  } catch (rejectedValueOrSerializedError) {
+                    console.log(rejectedValueOrSerializedError);
+                  }
                 }}
               >
                 Delete table
