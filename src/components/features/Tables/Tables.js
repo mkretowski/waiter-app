@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, ListGroup, Col, Row } from 'react-bootstrap';
-const Tables = ({ tables, action, ...props }) => {
-  const handleDelete = (tableId) => {
-    action(tableId);
-  };
+import { useDispatch } from 'react-redux';
+import { removeTableRequest } from '../../../redux/tablesReducer';
+const Tables = ({ tables }) => {
+  const dispatch = useDispatch();
+
   if (tables.length === 0) return <Col className='text-center'>No tables to show...</Col>;
   return (
     <ListGroup variant='flush' className='p-1'>
@@ -25,8 +27,9 @@ const Tables = ({ tables, action, ...props }) => {
               </Button>{' '}
               <Button
                 variant='primary'
-                onClick={() => {
-                  handleDelete(table.id);
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(removeTableRequest(table.id));
                 }}
               >
                 Delete table
@@ -38,5 +41,7 @@ const Tables = ({ tables, action, ...props }) => {
     </ListGroup>
   );
 };
-
+Tables.propTypes = {
+  tables: PropTypes.array.isRequired,
+};
 export default Tables;

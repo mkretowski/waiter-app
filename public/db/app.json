@@ -2,9 +2,9 @@
   "tables": [
     {
       "status": "Free",
-      "peopleAmount": 0,
-      "maxPeopleAmount": "10",
-      "bill": 0,
+      "peopleAmount": "0",
+      "maxPeopleAmount": "0",
+      "bill": "0",
       "id": "1"
     },
     {
@@ -20,20 +20,6 @@
       "maxPeopleAmount": "0",
       "bill": "0",
       "id": "3"
-    },
-    {
-      "status": "Cleaning",
-      "peopleAmount": 0,
-      "maxPeopleAmount": "0",
-      "bill": 0,
-      "id": "4"
-    },
-    {
-      "status": "Reserved",
-      "peopleAmount": "4",
-      "maxPeopleAmount": "6",
-      "bill": 0,
-      "id": "5"
     }
   ]
 }

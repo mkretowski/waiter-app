@@ -12,14 +12,18 @@ const TableUpdate = () => {
   const tableId = id;
   const tableData = useSelector((state) => getTableById(state, tableId));
   const handleSubmit = useCallback(
-    (table) => {
-      dispatch(updateTableRequest({ ...table, id }));
-      navigate('/');
+    async (table) => {
+      try {
+        await dispatch(updateTableRequest({ ...table, id })).unwrap();
+        navigate('/');
+      } catch (rejectedValueOrSerializedError) {
+        console.log(rejectedValueOrSerializedError);
+      }
     },
     [dispatch, navigate, id]
   );
   if (!tableData) return <Navigate to='/' />;
   return <TableForm action={handleSubmit} actionText='Update table' {...tableData} />;
 };
-
+//propTypes = {};
 export default TableUpdate;

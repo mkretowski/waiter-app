@@ -6,5 +6,4 @@ const PageTitle = (props) => {
     </Col>
   );
 };
-
 export default PageTitle;

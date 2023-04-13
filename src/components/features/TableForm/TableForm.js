@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import { Button, Col, Row } from 'react-bootstrap';
 import PageTitle from '../../views/PageTitle/PageTitle';
@@ -12,7 +13,8 @@ const TableForm = ({ action, actionText, ...props }) => {
   const [peopleAmountError, setPeopleAmountError] = useState(false);
   const [maxPeopleAmountError, setMaxPeopleAmountError] = useState(false);
   const [billError, setBillError] = useState(false);
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     action({ status, peopleAmount, maxPeopleAmount, bill });
   };
   const handleBill = (value) => {
@@ -156,5 +158,8 @@ const TableForm = ({ action, actionText, ...props }) => {
     </Col>
   );
 };
-
+TableForm.propTypes = {
+  action: PropTypes.func.isRequired,
+  actionText: PropTypes.string.isRequired,
+};
 export default TableForm;

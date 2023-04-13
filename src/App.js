@@ -9,11 +9,13 @@ import Header from './components/views/Header/Header';
 import { fetchTables } from './redux/tablesReducer';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
 const App = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(fetchTables()), [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTables());
+  }, [dispatch]);
+
   return (
     <Container>
       <Header />
