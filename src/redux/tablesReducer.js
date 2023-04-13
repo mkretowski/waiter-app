@@ -83,7 +83,9 @@ const tablesSlice = createSlice({
       state.data = [...state.data, { ...action.payload }];
     },
     updateTable(state, action) {
-      state.data.map((table) => (table.id === action.payload.id ? { ...table, ...action.payload } : table));
+      state.data = state.data.map((table) =>
+        table.id === action.payload.id ? { ...table, ...action.payload } : table
+      );
     },
   },
   extraReducers(builder) {
